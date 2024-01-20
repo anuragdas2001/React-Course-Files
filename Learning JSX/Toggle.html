@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+      const setShow = () => {
+        const Button = document.getElementById("myButton");
+        const rootElement = document.getElementById("root");
+        const helloElement = document.getElementById("hello");
+
+        if (Button && rootElement && helloElement) {
+          if (helloElement.style.display === "none" || helloElement.style.display === "") {
+            helloElement.style.display = "block";
+          } else {
+            helloElement.style.display = "none";
+          }
+
+          Button.textContent =
+            helloElement.style.display === "none"
+              ? "Show Element Below"
+              : "Hide Element Below";
+        }
+      };
+
+      const App = () => (
+        <>
+          <h1>Coding Ninjas</h1>
+          <button id="myButton" onClick={setShow}>
+            Show Element Below
+          </button>
+          <p id="hello">Hello ninjas,I am here.</p>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>

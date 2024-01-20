@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Starting with JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const student = [
+        {
+          name: "Anurag",
+          age: 22,
+          marks: 69,
+        },
+        {
+          name: "Rohan",
+          age: 23,
+          marks: 96,
+        },
+        {
+          name: "Harsh",
+          age: 22,
+          marks: 59,
+        },
+      ];
+      const car = [
+        {
+          Brand: "BMW",
+          Year: 2020,
+          Speed: 220,
+        },
+        {
+          Brand: "Honda",
+          Year: 2021,
+          Speed: 250,
+        },
+        {
+          Brand: "Mercedes",
+          Year: 2022,
+          Speed: 275,
+        },
+      ];
+      const Car = () => {
+        return (
+          <>
+            <h1>Car Details</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Brand</th>
+                  <th>Year</th>
+                  <th>Speed</th>
+                </tr>
+              </thead>
+              <tbody>
+                {car.map((cars, index) => {
+                  return (
+                    <>
+                      <tr key={index}>
+                        <td>{cars.Brand}</td>
+                        <td>{cars.Year}</td>
+                        <td>{cars.Speed}</td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
+        );
+      };
+      const Student = () => {
+        return (
+          <>
+            <h1>Students Details</h1>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>age</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {student.map((stu, index) => {
+                  return (
+                    <>
+                      <tr key={index}>
+                        <td>{stu.name}</td>
+                        <td>{stu.age}</td>
+                        <td>{stu.marks}</td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
+        );
+      };
+      const App = () => {
+        let isCar = false;
+        if (isCar) {
+          return (
+            <>
+              <Car />
+            </>
+          );
+        } else {
+          return (
+            <>
+              <Student />
+            </>
+          );
+        }
+      };
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

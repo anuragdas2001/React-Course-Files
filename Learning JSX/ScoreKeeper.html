@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting with JSX</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root" style="text-align: center;"></div>
+
+    <script type="text/babel">
+
+       let score  = 0;
+       let wicket = 0;
+
+    //    function clickOne(){
+    //     score+=1;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+    //    function clickTwo(){
+    //     score+=2;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+    //    function clickThree(){
+    //     score+=3;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+    //    function clickFour(){
+    //     score+=4;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+    //    function clickFive(){
+    //     score+=5;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+    //    function clickSix(){
+    //     score+=6;
+    //    console.log(score);
+    //     rootElement.render(<App />);
+    //  }
+
+    let BallwiseRes = [];
+    let hit = 0;
+    let inputRef = React.createRef();
+
+    function AddScore(num){
+    //     if(wicket>=10){
+    //     return;
+    // }
+    //     BallwiseRes.push(num);
+    //     score+=num;
+    hit = num;
+      rootElement.render(<App />); 
+    //   console.log(BallwiseRes)
+   }
+
+   function wicketCounter(){
+
+    // if(wicket>=10){
+    //     return;
+    // }
+    // const wic = <span style={{ color: 'red' }}>W</span>; //Use Double Curly Braces for inline CSS in JSX
+    // // console.log(wic)
+    // BallwiseRes.push(wic);
+    // wicket += 1;
+    hit = "W";
+    rootElement.render(<App />);
+    // console.log(BallwiseRes);
+   }
+
+
+   const ScoreButtons = () =>{
+    return(<>
+    <div>
+                <button onClick = {()=>AddScore(0)}>0</button>
+                <button onClick = {()=>AddScore(1)}>1</button>
+                <button onClick = {()=>AddScore(2)}>2</button>
+                <button onClick = {()=>AddScore(3)}>3</button>
+                <button onClick = {()=>AddScore(4)}>4</button>
+                <button onClick = {()=>AddScore(5)}>5</button>
+                <button onClick = {()=>AddScore(6)}>6</button>
+              <button onClick={wicketCounter}>wicket</button>
+    </div>
+    </>)
+    
+   }
+
+
+   const Result = () =>(
+    <div>
+        {BallwiseRes.map((res,index)=>(
+            <>
+            {index%6==0 ? <br></br> : null}
+            <span key={index}>{res == 0 ? <strong>.</strong> : res}</span>&nbsp;&nbsp;</>))}
+        
+    </div>
+
+   )
+
+   const HandleSubmit = (event) =>{
+        event.preventDefault();
+        if(hit == "W"){
+            wicket+=1;
+            
+        }
+        else{
+            score+=hit;
+        }
+        
+        // BallwiseRes.unshift(<><span>{hit},{inputRef.current.value}</span></>);
+        BallwiseRes.unshift(<span>{`${hit},${inputRef.current.value}`}</span>);
+        console.log(inputRef.current.value);
+        hit =0 ;
+        inputRef.current.value = "";
+        rootElement.render(<App />);
+
+   }
+
+
+
+
+   const Form  = () =>(
+
+    <>
+    <form onSubmit={()=>HandleSubmit(event)}>
+        <input value={hit} type="text"/>
+        <input ref={inputRef} type="text" placeholder="Add a Comment"/>
+        <button>Submit</button>
+    </form>
+    
+    </>
+
+
+   )
+
+
+
+
+
+
+
+        const App = () =>{
+                
+            return(<>
+            <h1>Score Board</h1>
+            <h2>{score}/{wicket}</h2>
+            <ScoreButtons/>
+            <br/>
+            <Form/>
+            <hr/>
+            {BallwiseRes.map((hit,index)=>{
+                return(<><p key={index}>{hit}</p></>)
+            })}
+            </>)
+                
+        }
+
+    const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+    rootElement.render(<App />);
+    </script>
+</body>
+</html>     

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting with JSX</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+       
+
+        const App = () =>{
+            //We have to use Ternary Operator
+            const isLoggedIn = true;
+            const username = "Babai";
+            // if(isLoggedIn)
+            // return <h1>Hello {username}!</h1>
+            // else
+            // return <h1>Hello User!</h1>
+
+
+            // const loggedUser =  <h1>Hello {username}!</h1>;
+            // const unloggedUser = <h1>Hello User!</h1>;
+            // return isLoggedIn ? loggedUser : unloggedUser;
+
+
+
+            // return isLoggedIn ? <h1>Hello {username}!</h1> : <h1>Hello User!</h1>
+                
+            // return isLoggedIn ?  <h1>Hello !</h1>
+                 
+            return (<><h1>Hello {isLoggedIn ? username && "Welcome To the Portal" : "User"}!</h1></>);
+
+        }
+       
+    
+
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App/>)
+
+
+
+
+
+    </script>
+</body>
+</html>     

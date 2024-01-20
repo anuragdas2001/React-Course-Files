@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let inputRef = React.createRef();
+
+      let Student = [
+        {
+          name: "Anurag",
+          marks: "67",
+        },
+      ];
+      let inputRefName = React.createRef();
+      let inputRefMarks = React.createRef();
+
+      const HandleSubmit = (event) => {
+        event.preventDefault();
+        const newStudent = {
+          name: inputRefName.current.value,
+          marks: inputRefMarks.current.value,
+        };
+        Student.push(newStudent);
+        rootElement.render(<App />);
+      };
+
+      const Form = () => {
+        return (
+          <>
+            <h1>Student's Form </h1>
+
+            <form>
+              <input type="text" ref={inputRefName} placeholder="Name" />
+              <input type="number" ref={inputRefMarks} placeholder="Marks" />
+              <button type="Submit" onClick={() => HandleSubmit(event)}>
+                Submit
+              </button>
+            </form>
+          </>
+        );
+      };
+
+      const Chart = () => {
+        return (
+          <>
+            <table border="1">
+              <thead>
+                <tr>
+                  <th>Student's name</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Student.map((stu, index) => {
+                  return (
+                    <>
+                      <tr key={index}>
+                        <td>{stu.name}</td>
+                        <td>{stu.marks}</td>
+                      </tr>
+                    </>
+                  );
+                })}
+              </tbody>
+            </table>
+          </>
+        );
+      };
+      const Result = () => <p></p>;
+
+      const App = () => (
+        <>
+          <Form />
+          <Chart />
+          <Result />
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>

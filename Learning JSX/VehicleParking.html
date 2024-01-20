@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // Create handlers to increase and decrease vehicle count here
+        let car=0;
+        let bike=0;
+        let scooty=0;
+        let bicycle=0;
+        let InputRefs = React.createRef();
+        let val;
+        let name; 
+      const Increase = (event) =>{
+        // console.log(InputRefs.current.value);
+        // console.log(InputRefs.current.name);
+        //  val = InputRefs.current.value;
+        //  name = InputRefs.current.name;
+        val = event.target.value;
+         name = event.target.name;
+        // val ? Increase && name ? car : car+=1
+        val == "Increase" && name == "car" ? car += 1 : null;/* else case, do nothing */
+        val == "Increase" && name == "bike" ? bike += 1 : null;/* else case, do nothing */
+        val == "Increase" && name == "scooty" ? scooty += 1 : null;/* else case, do nothing */
+        val == "Increase" && name == "bicycle" ? bicycle += 1 : null;/* else case, do nothing */
+
+        // if(val=="Increase" && name == "car"){
+        //     car+=1;
+        // }
+        // console.log(car);
+        rootElement.render(<App />);
+      }
+
+      const Decrease = (event) =>{
+        event.preventDefault();
+        // console.log(event.target)
+        // console.log(InputRefs.current.value);
+        // console.log(InputRefs.current.name);
+         val = event.target.value;
+         name = event.target.name;
+        //  console.log(val);
+        //  console.log(name);
+        // val ? Increase && name ? car : car+=1
+        val == "Decrease" && name == "car" && car>0 ? car -= 1 : null;/* else case, do nothing */
+        val == "Decrease" && name == "bike" && bike>0 ? bike -= 1 : null;/* else case, do nothing */
+        val == "Decrease" && name == "scooty" && scooty>0 ? scooty -= 1 : null;/* else case, do nothing */
+        val == "Decrease" && name == "bicycle" && bicycle>0 ? bicycle -= 1 : null;/* else case, do nothing */
+        // if(val=="Increase" && name == "car"){
+        //     car+=1;
+        // }
+        console.log(car);
+        rootElement.render(<App />);
+      }
+
+      const App = () => (
+        <>
+          <p>List of all the vehicles count in the parking.</p>
+          <ol>
+            <li>
+              <p>
+                <b>Car: {car} </b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <span> <button value="Increase" name="car" ref={InputRefs} onClick={()=>Increase(event)}>Increase</button>&nbsp;&nbsp;<button value="Decrease" name="car" ref={InputRefs} onClick={()=>Decrease(event)}>Decrease</button></span>
+               
+                
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bike: {bike}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <span> <button value="Increase" name="bike" ref={InputRefs} onClick={()=>Increase(event)}>Increase</button>&nbsp;&nbsp;<button value="Decrease" name="bike" ref={InputRefs} onClick={()=>Decrease(event)}>Decrease</button></span>
+                
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Scooty: {scooty} </b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <span> <button value="Increase" name="scooty" ref={InputRefs} onClick={()=>Increase(event)}>Increase</button>&nbsp;&nbsp;<button value="Decrease" name="scooty" ref={InputRefs} onClick={()=>Decrease(event)}>Decrease</button></span>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bicycle: {bicycle}</b> &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <span> <button value="Increase" name="bicycle" ref={InputRefs} onClick={()=>Increase(event)}>Increase</button>&nbsp;&nbsp;<button value="Decrease" name="bicycle" ref={InputRefs} onClick={()=>Decrease(event)}>Decrease</button></span>
+                
+
+              </p>
+            </li>
+          </ol>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+    </script>
+  </body>
+</html>
